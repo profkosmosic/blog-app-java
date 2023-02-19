@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Register</title>
+        <meta charset="utf-8"/>
+        <meta name="author" content="Lazar Petrovic"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+    </h:head>
+    <h:body>
+        <!--Header-->
+        <div id="header">
+            <div id="logo">
+                <a href="index.xhtml">FizzBuzz News</a>
+            </div>
+            <!--Desktop navigation-->
+            <div id="nav">
+                <a href="index.xhtml">Home</a>
+                <a href="#">Articles</a>
+                <c:if test="#{controller.isAdmin}">
+                    <a href="#">Admin</a>
+                </c:if>
+                <c:if test="#{!controller.loggedIn}">
+                    <a href="login.xhtml">Login</a>
+                </c:if>
+                <c:if test="#{controller.loggedIn}">
+                    <h:form><h:commandLink action="#{controller.logOut()}" value="Logout"></h:commandLink></h:form>
+                </c:if>
+            </div>
+            <!--Mobile navigation button-->
+            <div id="navMobile">
+                <a href="#" onClick="Burger()" class="fa fa-bars fa-fw"></a>
+            </div>
+        </div>
+        <!--Mobile navigation menu-->
+        <div id="navMobileContent">
+            <ul>
+                <a href="index.xhtml" onClick="Close()"><li>Home</li></a>
+                <a href="#" onClick="Close()"><li>Articles</li></a>
+                <c:if test="#{controller.isAdmin}">
+                    <a href="#" onclick="Close()"><li>Admin</li></a>
+                </c:if>
+                <c:if test="#{!controller.loggedIn}">
+                    <a href="login.xhtml" onClick="Close()"><li>Login</li></a>
+                </c:if>
+                <c:if test="#{controller.loggedIn}">
+                    <h:form><h:commandLink style="width: 100%" action="#{controller.logOut()}"><li>Logout</li></h:commandLink></h:form>
+                </c:if>
+            </ul>
+        </div>
+        <!--Main part of the page if the user is not logged in-->
+        <c:if test="#{!controller.loggedIn}">
+            <div id="main" style="height: 1100px;">
+                <div>
+                    <h1>Register</h1>
+                    <h2>Please fill out the <i class="highlight">form</i> below!</h2>
+                </div>
+                <div id="register" style="animation: fade-in 1s;">
+                    <h:form id="regForm">
+                        <h:outputLabel id="fnLabel" for="fname">First Name</h:outputLabel>
+                        <h:inputText value="#{controller.firstName}" id="fname" validatorMessage="First Name must be between 2 and 64 characters long!">
+                            <f:validateLength minimum="2"></f:validateLength>
+                        </h:inputText><br/><br/>
+                        <h:outputLabel id="lnLabel" for="lname">Last Name</h:outputLabel>
+                        <h:inputText value="#{controller.lastName}" id="lname" validatorMessage="Last Name must be between 2 and 64 characters long!">
+                            <f:validateLength minimum="2"></f:validateLength>
+                        </h:inputText><br/><br/>
+                        <h:outputLabel id="eLabel" for="email">Email</h:outputLabel>
+                        <h:inputText value="#{controller.email}" id="email" validatorMessage="Email must be between 4 and 64 characters long!">
+                            <f:validateLength minimum="4"></f:validateLength>
+                        </h:inputText><br/><br/>
+                        <h:outputLabel id="pLabel" for="password">Password</h:outputLabel>
+                        <h:inputSecret value="#{controller.password}" id="password" validatorMessage="Password must be between 8 and 64 characters long!">
+                            <f:validateLength minimum="8"></f:validateLength>
+                        </h:inputSecret><br/><br/>
+                        <h:commandButton action="#{controller.register()}" value="Register"></h:commandButton><br/>
+                        <h:messages style="color: red; font-size: 18px;"></h:messages>
+                    </h:form>
+                </div>
+            </div>
+        </c:if>
+        <!--Main part of the page if the user is already logged in-->
+        <c:if test="#{controller.loggedIn}">
+            <div id="main" style="height: 850px;">
+                <div>
+                    <h1>Can't register!</h1>
+                    <h1>You are already logged in!</h1>
+                </div>
+            </div>
+        </c:if>
+        <!--Footer-->
+        <div id="footer">
+            <p>Developed by <a href="https://github.com/profkosmosic" target="_blank">Lazar Petrovic</a></p>
+            <div id="links">
+                <a href="https://www.facebook.com/" target="_blank" class="fa fa-facebook fa-fw"></a>
+                <a href="https://www.twitter.com/" target="_blank" class="fa fa-twitter fa-fw"></a>
+                <a href="https://www.instagram.com/" target="_blank" class="fa fa-instagram fa-fw"></a>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/main.js"></script>
+    </h:body>
+</html>
