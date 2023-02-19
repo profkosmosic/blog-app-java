@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Home</title>
+        <meta charset="utf-8"/>
+        <meta name="author" content="Lazar Petrovic"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+    </h:head>
+    <h:body>
+        <!--Header-->
+        <div id="header">
+            <div id="logo">
+                <a href="#">FizzBuzz News</a>
+            </div>
+            <!--Desktop navigation-->
+            <div id="nav">
+                <a href="#">Home</a>
+                <a href="#">Articles</a>
+                <c:if test="#{controller.isAdmin}">
+                    <a href="#">Admin</a>
+                </c:if>
+                <c:if test="#{!controller.loggedIn}">
+                    <a href="login.xhtml">Login</a>
+                </c:if>
+                <c:if test="#{controller.loggedIn}">
+                    <h:form><h:commandLink action="#{controller.logOut()}" value="Logout"></h:commandLink></h:form>
+                </c:if>
+            </div>
+            <!--Mobile navigation button-->
+            <div id="navMobile">
+                <a href="#" onClick="Burger()" class="fa fa-bars fa-fw"></a>
+            </div>
+        </div>
+        <!--Mobile navigation menu-->
+        <div id="navMobileContent">
+            <ul>
+                <a href="#" onClick="Close()"><li>Home</li></a>
+                <a href="#" onClick="Close()"><li>Articles</li></a>
+                <c:if test="#{controller.isAdmin}">
+                    <a href="#" onclick="Close()"><li>Admin</li></a>
+                </c:if>
+                <c:if test="#{!controller.loggedIn}">
+                    <a href="login.xhtml" onClick="Close()"><li>Login</li></a>
+                </c:if>
+                <c:if test="#{controller.loggedIn}">
+                    <h:form><h:commandLink style="width: 100%" action="#{controller.logOut()}"><li>Logout</li></h:commandLink></h:form>
+                </c:if>
+            </ul>
+        </div>
+        <!--Main part of the page!-->
+        <div id="banner">
+            <div id="wrapper" style="animation: fade-in 1s;">
+                <i class="fa fa-times fa-fw fa-lg wrapperIcon" style="top:0;right:0;"></i>
+                <i class="fa fa-window-maximize fa-fw fa-lg wrapperIcon" style="top:0;right:30px;"></i>
+                <i class="fa fa-window-minimize fa-fw fa-lg wrapperIcon" style="top:0;right:60px;"></i>
+                <p><i class="highlight">root@fbnews~#</i> bash hello.sh</p>
+                <h1><i class="highlight hello-world">Hello World!</i></h1>
+                <h1>Welcome to our blog!</h1>
+            </div>
+        </div>
+        <div id="main" style="height: 875px; align-items:center;">
+            <h1>About Us</h1>
+            <div id="landingContent" style="animation: fade-in 1s;">
+                <div class="landingPart">
+                    <i class="fa fa-code fa-fw landingIcon"></i>
+                    <p>Welcome to the <i class="highlight">programming blog</i> where you'll find the latest tips and tricks for mastering the <i class="highlight">art of coding</i>. From beginner to advanced, our articles cover a wide range of topics to help you improve your skills and stay up-to-date with the <i class="highlight">latest industry trends</i>.</p>
+                </div><br/>
+                <div class="landingPart">
+                    <i class="fa fa-laptop fa-fw landingIcon"></i>
+                    <p>Whether you're a seasoned developer or just starting out, this blog is for <i class="highlight">you</i>. We cover popular programming languages, as well as <i class="highlight">new technologies</i> like AI and ML.</p>
+                </div><br/>
+                <div class="landingPart">
+                    <i class="fa fa-keyboard-o fa-fw landingIcon"></i>
+                    <p>We also offer <i class="highlight">tutorials</i> to help you navigate complex coding concepts and best practices. Our goal is to make programming accessible to <i class="highlight">everyone</i>, so we strive to present information in a clear and concise manner.</p>
+                </div>
+            </div>
+            <a href="#" style="animation: fade-in 1s;">Click here to get started!</a>
+        </div>
+        <!--Contact section of the landing page-->
+        <div id="main" style="height: 850px; background-image: url(images/prism.png)">
+            <div>
+                <h1>Contact Us</h1>
+                <h2>Want to get in <i class="highlight">touch</i> with us?</h2>
+            </div>
+            <div id="contact" style="animation: fade-in 1s;">
+                <h:form id="contactForm">
+                    <h:outputLabel id="eLabel" for="email">Email</h:outputLabel>
+                    <h:inputText id="email" value="#{controller.email}" validatorMessage="Email must be between 4 and 64 characters long!">
+                        <f:validateLength minimum="4" maximum="64"></f:validateLength>
+                    </h:inputText><br/><br/>
+                    <h:outputLabel id="cLabel" for="content">Content</h:outputLabel>
+                    <h:inputTextarea id="content" value="#{controller.contactMessage}" cols="28" rows="5" validatorMessage="Content must be between 8 and 512 characters long!">
+                        <f:validateLength minimum="8" maximum="512"></f:validateLength>
+                    </h:inputTextarea><br/><br/>
+                    <h:commandButton action="#{controller.contact()}" value="Send"></h:commandButton><br/>
+                    <h:messages style="color: red; font-size: 18px;"></h:messages>
+                </h:form>
+            </div>
+        </div>
+        <!--Footer-->
+        <div id="footer">
+            <p>Developed by <a href="https://github.com/profkosmosic" target="_blank">Lazar Petrovic</a></p>
+            <div id="links">
+                <a href="https://www.facebook.com/" target="_blank" class="fa fa-facebook fa-fw"></a>
+                <a href="https://www.twitter.com/" target="_blank" class="fa fa-twitter fa-fw"></a>
+                <a href="https://www.instagram.com/" target="_blank" class="fa fa-instagram fa-fw"></a>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/main.js"></script>
+    </h:body>
+</html>
