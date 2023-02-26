@@ -64,19 +64,19 @@
                 <div id="register" style="animation: fade-in 1s;">
                     <h:form id="regForm">
                         <h:outputLabel id="fnLabel" for="fname">First Name</h:outputLabel>
-                        <h:inputText value="#{controller.firstName}" id="fname" validatorMessage="First Name must be between 2 and 64 characters long!">
+                        <h:inputText value="#{controller.firstName}" id="fname" size="24" validatorMessage="First Name must be between 2 and 64 characters long!">
                             <f:validateLength minimum="2"></f:validateLength>
                         </h:inputText><br/><br/>
                         <h:outputLabel id="lnLabel" for="lname">Last Name</h:outputLabel>
-                        <h:inputText value="#{controller.lastName}" id="lname" validatorMessage="Last Name must be between 2 and 64 characters long!">
+                        <h:inputText value="#{controller.lastName}" id="lname" size="24" validatorMessage="Last Name must be between 2 and 64 characters long!">
                             <f:validateLength minimum="2"></f:validateLength>
                         </h:inputText><br/><br/>
                         <h:outputLabel id="eLabel" for="email">Email</h:outputLabel>
-                        <h:inputText value="#{controller.email}" id="email" validatorMessage="Email must be between 4 and 64 characters long!">
+                        <h:inputText value="#{controller.email}" id="email" size="24" validatorMessage="Email must be between 4 and 64 characters long!">
                             <f:validateLength minimum="4"></f:validateLength>
                         </h:inputText><br/><br/>
                         <h:outputLabel id="pLabel" for="password">Password</h:outputLabel>
-                        <h:inputSecret value="#{controller.password}" id="password" validatorMessage="Password must be between 8 and 64 characters long!">
+                        <h:inputSecret value="#{controller.password}" id="password" size="24" validatorMessage="Password must be between 8 and 64 characters long!">
                             <f:validateLength minimum="8"></f:validateLength>
                         </h:inputSecret><br/><br/>
                         <h:commandButton action="#{controller.register()}" value="Register"></h:commandButton><br/>
