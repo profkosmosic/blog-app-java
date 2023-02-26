@@ -24,7 +24,7 @@
                 <a href="index.xhtml">Home</a>
                 <a href="#">Articles</a>
                 <c:if test="#{controller.isAdmin}">
-                    <a href="#">Admin</a>
+                    <a href="admin.xhtml">Admin</a>
                 </c:if>
                 <c:if test="#{!controller.loggedIn}">
                     <a href="#">Login</a>
@@ -44,7 +44,7 @@
                 <a href="index.xhtml" onClick="Close()"><li>Home</li></a>
                 <a href="#" onClick="Close()"><li>Articles</li></a>
                 <c:if test="#{controller.isAdmin}">
-                    <a href="#" onclick="Close()"><li>Admin</li></a>
+                    <a href="admin.xhtml" onclick="Close()"><li>Admin</li></a>
                 </c:if>
                 <c:if test="#{!controller.loggedIn}">
                     <a href="#" onClick="Close()"><li>Login</li></a>
