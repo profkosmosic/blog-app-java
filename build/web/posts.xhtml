@@ -2,10 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Login</title>
+        <title>Articles</title>
         <meta charset="utf-8"/>
         <meta name="author" content="Lazar Petrovic"/>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
@@ -17,17 +16,17 @@
         <!--Header-->
         <div id="header">
             <div id="logo">
-                <a href="index.xhtml">FizzBuzz News</a>
+                <a href="#">FizzBuzz News</a>
             </div>
             <!--Desktop navigation-->
             <div id="nav">
                 <a href="index.xhtml">Home</a>
-                <a href="posts.xhtml">Articles</a>
+                <a href="#">Articles</a>
                 <c:if test="#{controller.isAdmin}">
                     <a href="admin.xhtml">Admin</a>
                 </c:if>
                 <c:if test="#{!controller.loggedIn}">
-                    <a href="#">Login</a>
+                    <a href="login.xhtml">Login</a>
                 </c:if>
                 <c:if test="#{controller.loggedIn}">
                     <h:form><h:commandLink action="#{controller.logOut()}" value="Logout"></h:commandLink></h:form>
@@ -42,50 +41,19 @@
         <div id="navMobileContent">
             <ul>
                 <a href="index.xhtml" onClick="Close()"><li>Home</li></a>
-                <a href="posts.xhtml" onClick="Close()"><li>Articles</li></a>
+                <a href="#" onClick="Close()"><li>Articles</li></a>
                 <c:if test="#{controller.isAdmin}">
                     <a href="admin.xhtml" onclick="Close()"><li>Admin</li></a>
                 </c:if>
                 <c:if test="#{!controller.loggedIn}">
-                    <a href="#" onClick="Close()"><li>Login</li></a>
+                    <a href="login.xhtml" onClick="Close()"><li>Login</li></a>
                 </c:if>
                 <c:if test="#{controller.loggedIn}">
                     <h:form><h:commandLink style="width: 100%" action="#{controller.logOut()}"><li>Logout</li></h:commandLink></h:form>
                 </c:if>
             </ul>
         </div>
-        <!--Main part of the page if the user is not logged in-->
-        <c:if test="#{!controller.loggedIn}">
-            <div id="mainLog">
-                <div>
-                    <h1>Login</h1>
-                    <h2>Don't have an account? <a href="register.xhtml">Click here to register!</a></h2>
-                </div>
-                <div id="login" style="animation: fade-in 1s;">
-                    <h:form id="loginForm">
-                        <h:outputLabel id="eLabel" for="email">Email</h:outputLabel>
-                        <h:inputText id="email" value="#{controller.email}" size="24" validatorMessage="Email must be between 4 and 64 characters long!">
-                            <f:validateLength minimum="4" maximum="64"></f:validateLength>
-                        </h:inputText><br/><br/>
-                        <h:outputLabel id="pLabel" for="password">Password</h:outputLabel>
-                        <h:inputSecret id="password" value="#{controller.password}" size="24" validatorMessage="Password must be between 8 and 64 characters long!">
-                            <f:validateLength minimum="8" maximum="64"></f:validateLength>
-                        </h:inputSecret><br/><br/>
-                        <h:commandButton action="#{controller.logIn()}" value="Login"></h:commandButton><br/>
-                        <h:messages style="color: red; font-size: 18px;"></h:messages>
-                    </h:form>
-                </div>
-            </div>
-        </c:if>
-        <!--Main part of the page if the user is already logged in-->
-        <c:if test="#{controller.loggedIn}">
-            <div id="mainLog">
-                <div>
-                    <h1>Can't login!</h1>
-                    <h1>You are already logged in!</h1>
-                </div>
-            </div>
-        </c:if>
+        
         <!--Footer-->
         <div id="footer">
             <p>Developed by <a href="https://github.com/profkosmosic" target="_blank">Lazar Petrovic</a></p>
@@ -98,3 +66,4 @@
         <script type="text/javascript" src="js/main.js"></script>
     </h:body>
 </html>
+

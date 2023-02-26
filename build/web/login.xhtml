@@ -22,7 +22,7 @@
             <!--Desktop navigation-->
             <div id="nav">
                 <a href="index.xhtml">Home</a>
-                <a href="#">Articles</a>
+                <a href="posts.xhtml">Articles</a>
                 <c:if test="#{controller.isAdmin}">
                     <a href="admin.xhtml">Admin</a>
                 </c:if>
@@ -42,7 +42,7 @@
         <div id="navMobileContent">
             <ul>
                 <a href="index.xhtml" onClick="Close()"><li>Home</li></a>
-                <a href="#" onClick="Close()"><li>Articles</li></a>
+                <a href="posts.xhtml" onClick="Close()"><li>Articles</li></a>
                 <c:if test="#{controller.isAdmin}">
                     <a href="admin.xhtml" onclick="Close()"><li>Admin</li></a>
                 </c:if>
