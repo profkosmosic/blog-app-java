@@ -215,12 +215,12 @@ textarea {
     text-align: center;
 }
 
-#mainLand a, #mainLog a, #mainReg a, #mainStatus a, #mainContact a, #mainAdmin a {
+#mainLand a, #mainLog a, #mainReg a, #mainStatus a, #mainContact a {
     font-size: 24px;
     color: green;
 }
 
-#mainLand a:hover, #mainLog a:hover, #mainReg a:hover, #mainStatus a:hover, #mainContact a:hover, #mainAdmin a:hover {
+#mainLand a:hover, #mainLog a:hover, #mainReg a:hover, #mainStatus a:hover, #mainContact a:hover {
     text-decoration: underline;
 }
 
@@ -239,7 +239,7 @@ textarea {
 }
 
 #mainReg {
-    height: 1100px;
+    height: 1000px;
 }
 
 #mainStatus {
@@ -249,6 +249,11 @@ textarea {
 
 #mainAdmin {
     height: 850px;
+    align-items: center;
+}
+
+#mainAdmin a {
+    font-size: 24px;
 }
 
 .highlight {
@@ -267,11 +272,14 @@ textarea {
     align-items: center;
 }
 
+.landingPart p {
+    margin-left: 25px;
+}
+
 .landingIcon {
     padding: 20px;
     background-color: #131313;
     border-radius: 10px;
-    margin-right: 25px;
 }
 
 .landingIcon:hover {
@@ -300,6 +308,46 @@ form {
 
 #contact form {
     height: 475px;
+}
+
+#adminOptions {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+}
+
+.adminChoice {
+    width: 175px;
+    height: 175px;
+    border: green 5px solid;
+    border-radius: 10px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.adminChoice p {
+    padding-top: 25px;
+}
+
+.adminChoice:hover {
+    background-color: green;
+}
+
+.adminIcon {
+    padding: 25px;
+    background-color: #131313;
+    border-radius: 10px;
+}
+
+#returnHome {
+    color: green;
+}
+
+#returnHome:hover {
+    text-decoration: underline;
 }
 
 #footer {
@@ -369,9 +417,30 @@ form {
         flex-direction: column;
     }
     
+    .landingPart p {
+        margin-left: 0px;
+    }
+    
     .landingIcon {
         padding: 15px;
-        margin-right: 0px;
+    }
+    
+    #mainAdmin {
+        height: 1100px;
+    }
+    
+    #mainReg {
+        height: 1200px;
+    }
+    
+    #adminOptions {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .adminChoice {
+        margin-bottom: 25px;
     }
     
     #footer p {
