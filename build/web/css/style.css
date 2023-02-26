@@ -194,7 +194,7 @@ textarea {
     animation: blinking-green .75s step-end infinite;
 }
 
-#mainLand, #mainLog, #mainReg, #mainStatus, #mainContact {
+#mainLand, #mainLog, #mainReg, #mainStatus, #mainContact, #mainAdmin {
     width: 100%;
     background-color: #222222;
     display: flex;
@@ -202,25 +202,25 @@ textarea {
     justify-content: space-evenly;
 }
 
-#mainLand h1, #mainLog h1, #mainReg h1, #mainStatus h1, #mainContact h1 {
+#mainLand h1, #mainLog h1, #mainReg h1, #mainStatus h1, #mainContact h1, #mainAdmin h1 {
     color: white;
     font-weight: normal;
     text-align: center;
     font-size: 42px;
 }
 
-#mainLand h2, #mainLog h2, #mainReg h2, #mainStatus h2, #mainContact h2 {
+#mainLand h2, #mainLog h2, #mainReg h2, #mainStatus h2, #mainContact h2, #mainAdmin h2 {
     color: white;
     font-weight: normal;
     text-align: center;
 }
 
-#mainLand a, #mainLog a, #mainReg a, #mainStatus a, #mainContact a {
+#mainLand a, #mainLog a, #mainReg a, #mainStatus a, #mainContact a, #mainAdmin a {
     font-size: 24px;
     color: green;
 }
 
-#mainLand a:hover, #mainLog a:hover, #mainReg a:hover, #mainStatus a:hover, #mainContact a:hover {
+#mainLand a:hover, #mainLog a:hover, #mainReg a:hover, #mainStatus a:hover, #mainContact a:hover, #mainAdmin a:hover {
     text-decoration: underline;
 }
 
@@ -245,6 +245,10 @@ textarea {
 #mainStatus {
     min-height: 100vh;
     align-items: center;
+}
+
+#mainAdmin {
+    height: 850px;
 }
 
 .highlight {

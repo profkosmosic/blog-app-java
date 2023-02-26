@@ -20,7 +20,7 @@
             </div>
             <!--Desktop navigation-->
             <div id="nav">
-                <a href="#">Home</a>
+                <a href="index.xhtml">Home</a>
                 <a href="#">Articles</a>
                 <c:if test="#{controller.isAdmin}">
                     <a href="#">Admin</a>
@@ -40,7 +40,7 @@
         <!--Mobile navigation menu-->
         <div id="navMobileContent">
             <ul>
-                <a href="#" onClick="Close()"><li>Home</li></a>
+                <a href="index.xhtml" onClick="Close()"><li>Home</li></a>
                 <a href="#" onClick="Close()"><li>Articles</li></a>
                 <c:if test="#{controller.isAdmin}">
                     <a href="#" onclick="Close()"><li>Admin</li></a>
@@ -53,7 +53,19 @@
                 </c:if>
             </ul>
         </div>
-        
+        <c:if test="#{controller.isAdmin}">
+            <div id="mainAdmin">
+                <h1>Hello Admin!</h1>
+            </div>
+        </c:if>
+        <c:if test="#{!controller.isAdmin}">
+            <div id="mainAdmin">
+                <div>
+                    <h1>Access Denied!</h1>
+                    <h2>Click <a href="index.xhtml">here</a> to return to the main page</h2>
+                </div>
+            </div>
+        </c:if>
         <div id="footer">
             <p>Developed by <a href="https://github.com/profkosmosic" target="_blank">Lazar Petrovic</a></p>
             <div id="links">

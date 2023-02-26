@@ -138,6 +138,7 @@ public class Controller implements Serializable {
         session.invalidate();
         loggedIn = false;
         isAdmin = false;
+        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
     }
     
     public String register() throws IOException {
