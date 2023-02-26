@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -181,9 +182,10 @@ public class Controller implements Serializable {
         try {
             con = DB.getInstance().getConnection();
             if(con != null) {
-                ps = con.prepareStatement("INSERT INTO ROOT.CONTACT(contact_email, contact_content) VALUES(?, ?)");
+                ps = con.prepareStatement("INSERT INTO ROOT.CONTACT(contact_email, contact_content, contact_date) VALUES(?, ?, ?)");
                 ps.setString(1, email);
                 ps.setString(2, contactMessage);
+                ps.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
                 ps.executeUpdate();
                 ps.close();
                 email = "";
