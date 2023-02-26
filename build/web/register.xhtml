@@ -56,7 +56,7 @@
         </div>
         <!--Main part of the page if the user is not logged in-->
         <c:if test="#{!controller.loggedIn}">
-            <div id="main" style="height: 1100px;">
+            <div id="mainReg">
                 <div>
                     <h1>Register</h1>
                     <h2>Please fill out the <i class="highlight">form</i> below!</h2>
@@ -87,7 +87,7 @@
         </c:if>
         <!--Main part of the page if the user is already logged in-->
         <c:if test="#{controller.loggedIn}">
-            <div id="main" style="height: 850px;">
+            <div id="mainReg" style="height: 850px;">
                 <div>
                     <h1>Can't register!</h1>
                     <h1>You are already logged in!</h1>

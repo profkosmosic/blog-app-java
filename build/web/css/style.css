@@ -194,7 +194,7 @@ textarea {
     animation: blinking-green .75s step-end infinite;
 }
 
-#main {
+#mainLand, #mainLog, #mainReg, #mainStatus, #mainContact {
     width: 100%;
     background-color: #222222;
     display: flex;
@@ -202,26 +202,49 @@ textarea {
     justify-content: space-evenly;
 }
 
-#main h1 {
+#mainLand h1, #mainLog h1, #mainReg h1, #mainStatus h1, #mainContact h1 {
     color: white;
     font-weight: normal;
     text-align: center;
     font-size: 42px;
 }
 
-#main h2 {
+#mainLand h2, #mainLog h2, #mainReg h2, #mainStatus h2, #mainContact h2 {
     color: white;
     font-weight: normal;
     text-align: center;
 }
 
-#main a {
+#mainLand a, #mainLog a, #mainReg a, #mainStatus a, #mainContact a {
     font-size: 24px;
     color: green;
 }
 
-#main a:hover {
+#mainLand a:hover, #mainLog a:hover, #mainReg a:hover, #mainStatus a:hover, #mainContact a:hover {
     text-decoration: underline;
+}
+
+#mainLand {
+    height: 875px;
+    align-items: center;
+}
+
+#mainContact {
+    height: 850px;
+    background-image: url(../images/prism.png);
+}
+
+#mainLog {
+    height: 850px;
+}
+
+#mainReg {
+    height: 1100px;
+}
+
+#mainStatus {
+    min-height: 100vh;
+    align-items: center;
 }
 
 .highlight {
