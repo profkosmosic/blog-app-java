@@ -27,6 +27,7 @@ a, p, h1, h2, label, input, li, textarea, td, th {
 
 table {
     border-collapse: collapse;
+    width: 75%;
 }
 
 td, th {
@@ -423,6 +424,10 @@ form {
 }
 
 @media (max-width: 980px) {
+    table {
+        width: 90%;
+    }
+    
     #nav {
         display: none;
     }

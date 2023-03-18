@@ -55,31 +55,32 @@
         </div>
         <c:if test="#{controller.isAdmin}">
             <div id="mainUserControl">
-                <h1>User Control</h1>
-                <div id="userContainer">
-                    <table>
-                        <tr>
-                            <th style="text-align: left">ID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Admin Status</th>
-                            <th>Promote</th>
-                            <th>Delete</th>
-                        </tr>
-                            <c:forEach items="#{controller.korisnici}" var="user">
-                                <tr>
-                                    <td style="text-align: left">#{user.userId}</td>
-                                    <td>#{user.firstName}</td>
-                                    <td>#{user.lastName}</td>
-                                    <td>#{user.email}</td>
-                                    <td>#{user.adminStatus}</td>
-                                    <td><a href="#">Promote</a></td>
-                                    <td><a href="#">Delete</a></td>
-                                </tr>
-                            </c:forEach>
-                    </table>
+                <div>
+                    <h1>User Control</h1>
+                    <h2>Here you can <i class="highlight">promote</i> or <i class="highlight">delete</i> users!</h2>
                 </div>
+                <table>
+                    <tr>
+                        <th style="text-align: left">ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Admin Status</th>
+                        <th>Promote</th>
+                        <th>Delete</th>
+                    </tr>
+                    <c:forEach items="#{controller.korisnici}" var="user">
+                        <tr>
+                            <td style="text-align: left">#{user.userId}</td>
+                            <td>#{user.firstName}</td>
+                            <td>#{user.lastName}</td>
+                            <td>#{user.email}</td>
+                            <td>#{user.adminStatus}</td>
+                            <td><a href="#">Promote</a></td>
+                            <td><a href="#">Delete</a></td>
+                        </tr>
+                    </c:forEach>
+                </table>
             </div>
         </c:if>
         <c:if test="#{!controller.isAdmin}">

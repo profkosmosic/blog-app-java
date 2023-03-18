@@ -232,6 +232,7 @@ public class Controller implements Serializable {
                     korisnici.add(u);
                 }
                 isFetched = true;
+                ps.close();
             }
         }
         
