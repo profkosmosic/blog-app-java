@@ -60,18 +60,18 @@
                     <h2>Please choose from the <i class="highlight">options</i> below!</h2>
                 </div>
                 <div id="adminOptions" style="animation: fade-in 1s;">
-                    <a href="#" class="adminChoice">
+                    <h:form><h:commandLink class="adminChoice" action="#{controller.goToUserControl()}">
                         <i class="fa fa-user-circle-o fa-lg fa-fw adminIcon"></i>
                         <p>User Control</p>
-                    </a>
-                    <a href="#" class="adminChoice">
+                    </h:commandLink></h:form>
+                    <h:form><h:commandLink class="adminChoice" action="#{controller.goToUserControl()}">
                         <i class="fa fa-file-text-o fa-lg fa-fw adminIcon"></i>
                         <p>Write Post</p>
-                    </a>
-                    <a href="#" class="adminChoice">
+                    </h:commandLink></h:form>
+                    <h:form><h:commandLink class="adminChoice" action="#{controller.goToUserControl()}">
                         <i class="fa fa-envelope-o fa-lg fa-fw adminIcon"></i>
                         <p>Read Messages</p>
-                    </a>
+                    </h:commandLink></h:form>
                 </div>
                 <br/>
             </div>

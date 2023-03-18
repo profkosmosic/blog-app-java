@@ -21,8 +21,28 @@ h1, ul {
     margin: 0;
 }
 
-a, p, h1, h2, label, input, li, textarea {
+a, p, h1, h2, label, input, li, textarea, td, th {
     font-family: siteFont;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 3px solid black;
+    text-align: center;
+    padding: 10px;
+    background-color: #181818;
+}
+
+td {
+    color: white;
+}
+
+th {
+    color: green;
+    font-weight: normal;
 }
 
 a {
@@ -194,7 +214,7 @@ textarea {
     animation: blinking-green .75s step-end infinite;
 }
 
-#mainLand, #mainLog, #mainReg, #mainStatus, #mainContact, #mainAdmin {
+#mainLand, #mainLog, #mainReg, #mainStatus, #mainContact, #mainAdmin, #mainUserControl {
     width: 100%;
     background-color: #222222;
     display: flex;
@@ -202,14 +222,14 @@ textarea {
     justify-content: space-evenly;
 }
 
-#mainLand h1, #mainLog h1, #mainReg h1, #mainStatus h1, #mainContact h1, #mainAdmin h1 {
+#mainLand h1, #mainLog h1, #mainReg h1, #mainStatus h1, #mainContact h1, #mainAdmin h1, #mainUserControl h1 {
     color: white;
     font-weight: normal;
     text-align: center;
     font-size: 42px;
 }
 
-#mainLand h2, #mainLog h2, #mainReg h2, #mainStatus h2, #mainContact h2, #mainAdmin h2 {
+#mainLand h2, #mainLog h2, #mainReg h2, #mainStatus h2, #mainContact h2, #mainAdmin h2, #mainUserControl h2 {
     color: white;
     font-weight: normal;
     text-align: center;
@@ -254,6 +274,20 @@ textarea {
 
 #mainAdmin a {
     font-size: 24px;
+}
+
+#mainUserControl {
+    height: 850px;
+    align-items: center;
+}
+
+#mainUserControl a {
+    color: white;
+}
+
+#mainUserControl a:hover {
+    color: green;
+    text-decoration: underline;
 }
 
 .highlight {

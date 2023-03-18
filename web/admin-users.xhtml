@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Admin</title>
+        <title>User Control</title>
         <meta charset="utf-8"/>
         <meta name="author" content="Lazar Petrovic"/>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
@@ -23,7 +23,7 @@
                 <a href="index.xhtml">Home</a>
                 <a href="posts.xhtml">Articles</a>
                 <c:if test="#{controller.isAdmin}">
-                    <a href="#">Admin</a>
+                    <a href="admin.xhtml">Admin</a>
                 </c:if>
                 <c:if test="#{!controller.loggedIn}">
                     <a href="login.xhtml">Login</a>
@@ -54,26 +54,32 @@
             </ul>
         </div>
         <c:if test="#{controller.isAdmin}">
-            <div id="mainAdmin">
-                <div>
-                    <h1>Admin Panel</h1>
-                    <h2>Please choose from the <i class="highlight">options</i> below!</h2>
+            <div id="mainUserControl">
+                <h1>User Control</h1>
+                <div id="userContainer">
+                    <table>
+                        <tr>
+                            <th style="text-align: left">ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Admin Status</th>
+                            <th>Promote</th>
+                            <th>Delete</th>
+                        </tr>
+                            <c:forEach items="#{controller.korisnici}" var="user">
+                                <tr>
+                                    <td style="text-align: left">#{user.userId}</td>
+                                    <td>#{user.firstName}</td>
+                                    <td>#{user.lastName}</td>
+                                    <td>#{user.email}</td>
+                                    <td>#{user.adminStatus}</td>
+                                    <td><a href="#">Promote</a></td>
+                                    <td><a href="#">Delete</a></td>
+                                </tr>
+                            </c:forEach>
+                    </table>
                 </div>
-                <div id="adminOptions" style="animation: fade-in 1s;">
-                    <h:form><h:commandLink class="adminChoice" action="#{controller.goToUserControl()}">
-                        <i class="fa fa-user-circle-o fa-lg fa-fw adminIcon"></i>
-                        <p>User Control</p>
-                    </h:commandLink></h:form>
-                    <h:form><h:commandLink class="adminChoice" action="#{controller.goToUserControl()}">
-                        <i class="fa fa-file-text-o fa-lg fa-fw adminIcon"></i>
-                        <p>Write Post</p>
-                    </h:commandLink></h:form>
-                    <h:form><h:commandLink class="adminChoice" action="#{controller.goToUserControl()}">
-                        <i class="fa fa-envelope-o fa-lg fa-fw adminIcon"></i>
-                        <p>Read Messages</p>
-                    </h:commandLink></h:form>
-                </div>
-                <br/>
             </div>
         </c:if>
         <c:if test="#{!controller.isAdmin}">

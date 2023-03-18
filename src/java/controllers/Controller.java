@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -28,6 +30,8 @@ public class Controller implements Serializable {
     private User korisnik = new User();
     private Boolean loggedIn = false;
     private Boolean isAdmin = false;
+    private Boolean isFetched = false;
+    private List<User> korisnici = new ArrayList<>();
 
     public Integer getUserId() {
         return userId;
@@ -99,6 +103,14 @@ public class Controller implements Serializable {
 
     public void setKorisnik(User korisnik) {
         this.korisnik = korisnik;
+    }
+
+    public List<User> getKorisnici() {
+        return korisnici;
+    }
+
+    public void setKorisnici(List<User> korisnici) {
+        this.korisnici = korisnici;
     }
     
     public void logIn() throws IOException {
@@ -198,5 +210,38 @@ public class Controller implements Serializable {
         catch(SQLException ex) {
             return "failure";
         }
+    }
+    
+    public void fetchUsers() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            con = DB.getInstance().getConnection();
+            if(con != null) {
+                ps = con.prepareStatement("SELECT * FROM ROOT.USERS");
+                rs = ps.executeQuery();
+                while(rs.next() && !isFetched) {
+                    User u = new User();
+                    u.setUserId(rs.getInt("user_id"));
+                    u.setFirstName(rs.getString("first_name"));
+                    u.setLastName(rs.getString("last_name"));
+                    u.setEmail(rs.getString("email"));
+                    u.setAdminStatus(rs.getString("admin_status"));
+                    korisnici.add(u);
+                }
+                isFetched = true;
+            }
+        }
+        
+        catch(SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public String goToUserControl() {
+        fetchUsers();
+        return "admin-users";
     }
 }
