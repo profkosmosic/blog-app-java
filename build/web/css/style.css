@@ -349,6 +349,9 @@ textarea {
 
 .contactMessage pre {
     text-align: left;
+    overflow-x: auto;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 .highlight {
@@ -541,6 +544,10 @@ form {
     
     .adminChoice {
         margin-bottom: 25px;
+    }
+    
+    #contactMsgContainer {
+        width: 90%;
     }
     
     #footer p {
