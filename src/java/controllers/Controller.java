@@ -347,7 +347,7 @@ public class Controller implements Serializable {
     }
     
     public void goToPostWriting() throws IOException {
-        FacesContext.getCurrentInstance().getExternalContext().redirect("admin-users.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("admin-write.xhtml");
     }
     
     public void goToAdminContact() throws IOException {

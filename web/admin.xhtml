@@ -53,6 +53,7 @@
                 </c:if>
             </ul>
         </div>
+        <!--Main part of the page if the user is an admin-->
         <c:if test="#{controller.isAdmin}">
             <div id="mainAdmin">
                 <div>
@@ -76,6 +77,7 @@
                 <br/>
             </div>
         </c:if>
+        <!--Main part of the page if the user is not an admin-->
         <c:if test="#{!controller.isAdmin}">
             <div id="mainAdmin">
                 <div>
