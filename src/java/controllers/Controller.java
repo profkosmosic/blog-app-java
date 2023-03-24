@@ -30,7 +30,6 @@ public class Controller implements Serializable {
     private User korisnik = new User();
     private Boolean loggedIn = false;
     private Boolean isAdmin = false;
-    private Boolean isFetched = false;
     private List<User> korisnici = new ArrayList<>();
 
     public Integer getUserId() {
@@ -213,6 +212,7 @@ public class Controller implements Serializable {
     }
     
     public void fetchUsers() {
+        korisnici.clear();
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -222,7 +222,7 @@ public class Controller implements Serializable {
             if(con != null) {
                 ps = con.prepareStatement("SELECT * FROM ROOT.USERS");
                 rs = ps.executeQuery();
-                while(rs.next() && !isFetched) {
+                while(rs.next()) {
                     User u = new User();
                     u.setUserId(rs.getInt("user_id"));
                     u.setFirstName(rs.getString("first_name"));
@@ -231,7 +231,6 @@ public class Controller implements Serializable {
                     u.setAdminStatus(rs.getString("admin_status"));
                     korisnici.add(u);
                 }
-                isFetched = true;
                 ps.close();
             }
         }
@@ -241,8 +240,50 @@ public class Controller implements Serializable {
         }
     }
     
-    public String goToUserControl() {
+    public void deleteUser(int id) throws IOException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            con = DB.getInstance().getConnection();
+            if(con != null) {
+                ps = con.prepareStatement("DELETE FROM ROOT.USERS WHERE user_id = ?");
+                ps.setInt(1, id);
+                ps.executeUpdate();
+                ps.close();
+                goToUserControl();
+            }
+        }
+        
+        catch(SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void promoteUser(int id) throws IOException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            con = DB.getInstance().getConnection();
+            if(con != null) {
+                ps = con.prepareStatement("UPDATE ROOT.USERS SET admin_status = 1 WHERE user_id = ?");
+                ps.setInt(1, id);
+                ps.executeUpdate();
+                ps.close();
+                goToUserControl();
+            }
+        }
+        
+        catch(SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void goToUserControl() throws IOException {
         fetchUsers();
-        return "admin-users";
+        FacesContext.getCurrentInstance().getExternalContext().redirect("admin-users.xhtml");
     }
 }

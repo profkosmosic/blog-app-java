@@ -58,8 +58,9 @@
                 <div>
                     <h1>User Control</h1>
                     <h2>Here you can <i class="highlight">promote</i> or <i class="highlight">delete</i> users!</h2>
+                    <h:form><h:commandLink class="reload" action="#{controller.goToUserControl()}" value="Click here to reload the table!"></h:commandLink></h:form>
                 </div>
-                <table>
+                <table style="animation: fade-in 1s;">
                     <tr>
                         <th style="text-align: left">ID</th>
                         <th>First Name</th>
@@ -76,8 +77,8 @@
                             <td>#{user.lastName}</td>
                             <td>#{user.email}</td>
                             <td>#{user.adminStatus}</td>
-                            <td><a href="#">Promote</a></td>
-                            <td><a href="#">Delete</a></td>
+                            <td><h:form><h:commandLink action="#{controller.promoteUser(user.userId)}" value="Promote"></h:commandLink></h:form></td>
+                            <td><h:form><h:commandLink action="#{controller.deleteUser(user.userId)}" value="Delete"></h:commandLink></h:form></td>
                         </tr>
                     </c:forEach>
                 </table>

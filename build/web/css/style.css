@@ -26,6 +26,8 @@ a, p, h1, h2, label, input, li, textarea, td, th {
 }
 
 table {
+    margin-top: 100px;
+    margin-bottom: 150px;
     border-collapse: collapse;
     width: 75%;
 }
@@ -215,7 +217,7 @@ textarea {
     animation: blinking-green .75s step-end infinite;
 }
 
-#mainLand, #mainLog, #mainReg, #mainStatus, #mainContact, #mainAdmin, #mainUserControl {
+#mainLand, #mainLog, #mainReg, #mainStatus, #mainContact, #mainAdmin {
     width: 100%;
     background-color: #222222;
     display: flex;
@@ -278,8 +280,15 @@ textarea {
 }
 
 #mainUserControl {
-    height: 850px;
+    width: 100%;
+    background-color: #222222;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+}
+
+#mainUserControl h1 {
+    margin-top: 75px;
 }
 
 #mainUserControl a {
@@ -289,6 +298,11 @@ textarea {
 #mainUserControl a:hover {
     color: green;
     text-decoration: underline;
+}
+
+.reload {
+    margin-top: 50px;
+    font-size: 24px;
 }
 
 .highlight {
