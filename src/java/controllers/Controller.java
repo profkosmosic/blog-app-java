@@ -21,19 +21,15 @@ import javax.servlet.http.HttpSession;
 @Named(value = "controller")
 public class Controller implements Serializable {
     // All info we can get from the login, register and contact forms.
-    private Integer userId;
     private String email;
     private String password;
     private String firstName;
     private String lastName;
     private String contactMessage;
     // All info we can get from the post writing form.
-    private Integer postId;
     private String postTitle;
     private String postContent;
     private String postType;
-    private Timestamp postDate;
-    private Integer authorId;
     // All user info will be stored in this object.
     private User korisnik = new User();
     // Status checks.
@@ -43,14 +39,6 @@ public class Controller implements Serializable {
     private List<User> korisnici = new ArrayList<>();
     private List<Message> poruke = new ArrayList<>();
     // Getters and Setters
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-    
     public String getEmail() {
         return email;
     }
@@ -131,14 +119,6 @@ public class Controller implements Serializable {
         this.poruke = poruke;
     }
 
-    public Integer getPostId() {
-        return postId;
-    }
-
-    public void setPostId(Integer postId) {
-        this.postId = postId;
-    }
-
     public String getPostTitle() {
         return postTitle;
     }
@@ -161,22 +141,6 @@ public class Controller implements Serializable {
 
     public void setPostType(String postType) {
         this.postType = postType;
-    }
-
-    public Timestamp getPostDate() {
-        return postDate;
-    }
-
-    public void setPostDate(Timestamp postDate) {
-        this.postDate = postDate;
-    }
-
-    public Integer getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(Integer authorId) {
-        this.authorId = authorId;
     }
     // Methods
     public void logIn() throws IOException {
@@ -396,6 +360,10 @@ public class Controller implements Serializable {
         catch(SQLException ex) {
             System.out.println(ex);
         }
+    }
+    
+    public void addPosts() {
+        
     }
     
     public void goToUserControl() throws IOException {
