@@ -20,20 +20,29 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 @Named(value = "controller")
 public class Controller implements Serializable {
-    
+    // All info we can get from the login, register and contact forms.
     private Integer userId;
     private String email;
     private String password;
     private String firstName;
     private String lastName;
     private String contactMessage;
-    
+    // All info we can get from the post writing form.
+    private Integer postId;
+    private String postTitle;
+    private String postContent;
+    private String postType;
+    private Timestamp postDate;
+    private Integer authorId;
+    // All user info will be stored in this object.
     private User korisnik = new User();
+    // Status checks.
     private Boolean loggedIn = false;
     private Boolean isAdmin = false;
+    // Item lists.
     private List<User> korisnici = new ArrayList<>();
     private List<Message> poruke = new ArrayList<>();
-
+    // Getters and Setters
     public Integer getUserId() {
         return userId;
     }
@@ -121,7 +130,55 @@ public class Controller implements Serializable {
     public void setPoruke(List<Message> poruke) {
         this.poruke = poruke;
     }
-    
+
+    public Integer getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Integer postId) {
+        this.postId = postId;
+    }
+
+    public String getPostTitle() {
+        return postTitle;
+    }
+
+    public void setPostTitle(String postTitle) {
+        this.postTitle = postTitle;
+    }
+
+    public String getPostContent() {
+        return postContent;
+    }
+
+    public void setPostContent(String postContent) {
+        this.postContent = postContent;
+    }
+
+    public String getPostType() {
+        return postType;
+    }
+
+    public void setPostType(String postType) {
+        this.postType = postType;
+    }
+
+    public Timestamp getPostDate() {
+        return postDate;
+    }
+
+    public void setPostDate(Timestamp postDate) {
+        this.postDate = postDate;
+    }
+
+    public Integer getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Integer authorId) {
+        this.authorId = authorId;
+    }
+    // Methods
     public void logIn() throws IOException {
         Connection con = null;
         PreparedStatement ps = null;
