@@ -61,10 +61,10 @@
                     <h2>Here you can <i class="highlight">read</i> and <i class="highlight">delete</i> messages!</h2>
                 </div>
                 <div id="contactMsgContainer" style="animation: fade-in 1s;">
-                    <c:forEach items="#{controller.poruke}" var="msg">
+                    <c:forEach items="#{controller.messages}" var="msg">
                         <div class="contactMessage">
                             <p class="cEmail">#{msg.contactEmail}</p>
-                            <p class="cDate">#{msg.contactDate}</p><br/>
+                            <p class="cDate">#{msg.contactDate}</p><br/><br/>
                             <h:form><h:commandLink class="cDelete" action="#{controller.deleteMessage(msg.contactId)}" value="DELETE"></h:commandLink></h:form>
                             <pre>#{msg.contactContent}</pre>
                         </div>

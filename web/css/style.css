@@ -493,6 +493,10 @@ form {
         width: 90%;
     }
     
+    td, th {
+        padding: 5px;
+    }
+    
     #nav {
         display: none;
     }
@@ -550,6 +554,11 @@ form {
     
     #contactMsgContainer {
         width: 90%;
+    }
+    
+    .cDate {
+        left: 25px;
+        top: 25px;
     }
     
     #footer p {

@@ -31,13 +31,13 @@ public class Controller implements Serializable {
     private String postContent;
     private String postType;
     // All user info will be stored in this object.
-    private User korisnik = new User();
+    private User user = new User();
     // Status checks.
     private Boolean loggedIn = false;
     private Boolean isAdmin = false;
     // Item lists.
-    private List<User> korisnici = new ArrayList<>();
-    private List<Message> poruke = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
+    private List<Message> messages = new ArrayList<>();
     // Getters and Setters
     public String getEmail() {
         return email;
@@ -95,28 +95,28 @@ public class Controller implements Serializable {
         this.isAdmin = isAdmin;
     }
 
-    public User getKorisnik() {
-        return korisnik;
+    public User getUser() {
+        return user;
     }
 
-    public void setKorisnik(User korisnik) {
-        this.korisnik = korisnik;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public List<User> getKorisnici() {
-        return korisnici;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setKorisnici(List<User> korisnici) {
-        this.korisnici = korisnici;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
-    public List<Message> getPoruke() {
-        return poruke;
+    public List<Message> getMessages() {
+        return messages;
     }
 
-    public void setPoruke(List<Message> poruke) {
-        this.poruke = poruke;
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 
     public String getPostTitle() {
@@ -156,13 +156,13 @@ public class Controller implements Serializable {
                 ps.setString(2, password);
                 rs = ps.executeQuery();
                 if(rs.next()) {
-                    korisnik.setUserId(rs.getInt("user_id"));
-                    korisnik.setFirstName(rs.getString("first_name"));
-                    korisnik.setLastName(rs.getString("last_name"));
-                    korisnik.setEmail(rs.getString("email"));
-                    korisnik.setAdminStatus(rs.getString("admin_status"));
+                    user.setUserId(rs.getInt("user_id"));
+                    user.setFirstName(rs.getString("first_name"));
+                    user.setLastName(rs.getString("last_name"));
+                    user.setEmail(rs.getString("email"));
+                    user.setAdminStatus(rs.getString("admin_status"));
                     loggedIn = true;
-                    if(korisnik.getAdminStatus().equals("1")) {
+                    if(user.getAdminStatus().equals("1")) {
                         isAdmin = true;
                     }
                     ps.close();
@@ -243,7 +243,7 @@ public class Controller implements Serializable {
     }
     
     public void fetchUsers() {
-        korisnici.clear();
+        users.clear();
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -260,7 +260,7 @@ public class Controller implements Serializable {
                     u.setLastName(rs.getString("last_name"));
                     u.setEmail(rs.getString("email"));
                     u.setAdminStatus(rs.getString("admin_status"));
-                    korisnici.add(u);
+                    users.add(u);
                 }
                 ps.close();
             }
@@ -314,7 +314,7 @@ public class Controller implements Serializable {
     }
     
     public void fetchMessages() {
-        poruke.clear();
+        messages.clear();
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -330,7 +330,7 @@ public class Controller implements Serializable {
                     m.setContactEmail(rs.getString("contact_email"));
                     m.setContactContent(rs.getString("contact_content"));
                     m.setContactDate(rs.getTimestamp("contact_date"));
-                    poruke.add(m);
+                    messages.add(m);
                 }
                 ps.close();
             }
@@ -370,8 +370,29 @@ public class Controller implements Serializable {
         
     }
     
-    public void addPost() {
+    public String addPost() {
+        Connection con = null;
+        PreparedStatement ps = null;
         
+        try {
+            con = DB.getInstance().getConnection();
+            if(con != null) {
+                ps = con.prepareStatement("INSERT INTO ROOT.POSTS(post_title, post_content, post_type, post_date, user_id) VALUES(?, ?, ?, ?, ?)");
+                ps.setString(1, postTitle);
+                ps.setString(2, postContent);
+                ps.setString(3, postType);
+                ps.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
+                ps.setInt(5, user.getUserId());
+                ps.executeUpdate();
+                ps.close();
+                return "success";
+            }
+            return "failure";
+        }
+        
+        catch(SQLException ex) {
+            return "failure";
+        }
     }
     
     public void goToUserControl() throws IOException {
