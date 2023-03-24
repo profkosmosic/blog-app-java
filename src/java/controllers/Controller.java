@@ -284,12 +284,66 @@ public class Controller implements Serializable {
         }
     }
     
+    public void fetchMessages() {
+        poruke.clear();
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            con = DB.getInstance().getConnection();
+            if(con != null) {
+                ps = con.prepareStatement("SELECT * FROM ROOT.CONTACT");
+                rs = ps.executeQuery();
+                while(rs.next()) {
+                    Message m = new Message();
+                    m.setContactId(rs.getInt("contact_id"));
+                    m.setContactEmail(rs.getString("contact_email"));
+                    m.setContactContent(rs.getString("contact_content"));
+                    m.setContactDate(rs.getTimestamp("contact_date"));
+                    poruke.add(m);
+                }
+                ps.close();
+            }
+        }
+        
+        catch(SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void deleteMessages(int id) throws IOException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            con = DB.getInstance().getConnection();
+            if(con != null) {
+                ps = con.prepareStatement("DELETE FROM ROOT.CONTACT WHERE contact_id = ?");
+                ps.setInt(1, id);
+                ps.executeUpdate();
+                ps.close();
+                goToAdminContact();
+            }
+        }
+        
+        catch(SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
     public void goToUserControl() throws IOException {
         fetchUsers();
         FacesContext.getCurrentInstance().getExternalContext().redirect("admin-users.xhtml");
     }
     
+    public void goToPostWriting() throws IOException {
+        FacesContext.getCurrentInstance().getExternalContext().redirect("admin-users.xhtml");
+    }
+    
     public void goToAdminContact() throws IOException {
+        fetchMessages();
         FacesContext.getCurrentInstance().getExternalContext().redirect("admin-contact.xhtml");
     }
 }
