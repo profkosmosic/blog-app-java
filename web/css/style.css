@@ -26,7 +26,7 @@ a, p, h1, h2, label, input, li, textarea, td, th, pre {
 }
 
 table {
-    margin-top: 100px;
+    margin-top: 85px;
     margin-bottom: 150px;
     border-collapse: collapse;
     width: 75%;
@@ -292,11 +292,10 @@ textarea {
 }
 
 #mainUserControl a {
-    color: white;
+    color: green;
 }
 
 #mainUserControl a:hover {
-    color: green;
     text-decoration: underline;
 }
 
