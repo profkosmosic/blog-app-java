@@ -113,6 +113,14 @@ public class Controller implements Serializable {
     public void setKorisnici(List<User> korisnici) {
         this.korisnici = korisnici;
     }
+
+    public List<Message> getPoruke() {
+        return poruke;
+    }
+
+    public void setPoruke(List<Message> poruke) {
+        this.poruke = poruke;
+    }
     
     public void logIn() throws IOException {
         Connection con = null;
@@ -312,7 +320,7 @@ public class Controller implements Serializable {
         }
     }
     
-    public void deleteMessages(int id) throws IOException {
+    public void deleteMessage(int id) throws IOException {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;

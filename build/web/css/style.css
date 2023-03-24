@@ -21,7 +21,7 @@ h1, ul {
     margin: 0;
 }
 
-a, p, h1, h2, label, input, li, textarea, td, th {
+a, p, h1, h2, label, input, li, textarea, td, th, pre {
     font-family: siteFont;
 }
 
@@ -238,12 +238,12 @@ textarea {
     text-align: center;
 }
 
-#mainLand a, #mainLog a, #mainReg a, #mainStatus a, #mainContact a, #mainAdminContact a {
+#mainLand a, #mainLog a, #mainReg a, #mainStatus a, #mainContact a {
     font-size: 24px;
     color: green;
 }
 
-#mainLand a:hover, #mainLog a:hover, #mainReg a:hover, #mainStatus a:hover, #mainContact a:hover, #mainAdminContact a:hover {
+#mainLand a:hover, #mainLog a:hover, #mainReg a:hover, #mainStatus a:hover, #mainContact a:hover {
     text-decoration: underline;
 }
 
@@ -303,6 +303,52 @@ textarea {
 .reload {
     margin-top: 50px;
     font-size: 24px;
+}
+
+#contactMsgContainer {
+    width: 65%;
+    margin-top: 75px;
+    margin-bottom: 75px;
+}
+
+.contactMessage {
+    color: white;
+    position: relative;
+    border: 5px solid black;
+    margin-bottom: 50px;
+    padding: 25px;
+    background-color: #181818;
+}
+
+.cEmail {
+    position: absolute;
+    left: 25px;
+    top: 0;
+    color: green;
+}
+
+.cDate {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: green;
+}
+
+.cDelete {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    color: green;
+    border: 3px green solid;
+    padding: 7px;
+}
+
+.cDelete:hover {
+    text-decoration: underline;
+}
+
+.contactMessage pre {
+    text-align: left;
 }
 
 .highlight {
