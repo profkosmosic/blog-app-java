@@ -65,8 +65,8 @@
                         <div class="contactMessage">
                             <p class="cEmail">#{msg.contactEmail}</p>
                             <p class="cDate">#{msg.contactDate}</p><br/><br/>
+                            <pre>#{msg.contactContent}</pre><br/><br/>
                             <h:form><h:commandLink class="cDelete" action="#{controller.deleteMessage(msg.contactId)}" value="DELETE"></h:commandLink></h:form>
-                            <pre>#{msg.contactContent}</pre>
                         </div>
                     </c:forEach>
                 </div>
