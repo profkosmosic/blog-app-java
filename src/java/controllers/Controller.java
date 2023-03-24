@@ -362,7 +362,15 @@ public class Controller implements Serializable {
         }
     }
     
-    public void addPosts() {
+    public void fetchPosts() {
+        
+    }
+    
+    public void getPost() {
+        
+    }
+    
+    public void addPost() {
         
     }
     
