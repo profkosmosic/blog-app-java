@@ -1,5 +1,6 @@
 package controllers;
 
+import beans.Message;
 import data.DB;
 import beans.User;
 import java.io.IOException;
@@ -31,6 +32,7 @@ public class Controller implements Serializable {
     private Boolean loggedIn = false;
     private Boolean isAdmin = false;
     private List<User> korisnici = new ArrayList<>();
+    private List<Message> poruke = new ArrayList<>();
 
     public Integer getUserId() {
         return userId;
@@ -285,5 +287,9 @@ public class Controller implements Serializable {
     public void goToUserControl() throws IOException {
         fetchUsers();
         FacesContext.getCurrentInstance().getExternalContext().redirect("admin-users.xhtml");
+    }
+    
+    public void goToAdminContact() throws IOException {
+        FacesContext.getCurrentInstance().getExternalContext().redirect("admin-contact.xhtml");
     }
 }

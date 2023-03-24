@@ -225,25 +225,25 @@ textarea {
     justify-content: space-evenly;
 }
 
-#mainLand h1, #mainLog h1, #mainReg h1, #mainStatus h1, #mainContact h1, #mainAdmin h1, #mainUserControl h1 {
+#mainLand h1, #mainLog h1, #mainReg h1, #mainStatus h1, #mainContact h1, #mainAdmin h1, #mainUserControl h1, #mainAdminContact h1 {
     color: white;
     font-weight: normal;
     text-align: center;
     font-size: 42px;
 }
 
-#mainLand h2, #mainLog h2, #mainReg h2, #mainStatus h2, #mainContact h2, #mainAdmin h2, #mainUserControl h2 {
+#mainLand h2, #mainLog h2, #mainReg h2, #mainStatus h2, #mainContact h2, #mainAdmin h2, #mainUserControl h2, #mainAdminContact h2 {
     color: white;
     font-weight: normal;
     text-align: center;
 }
 
-#mainLand a, #mainLog a, #mainReg a, #mainStatus a, #mainContact a {
+#mainLand a, #mainLog a, #mainReg a, #mainStatus a, #mainContact a, #mainAdminContact a {
     font-size: 24px;
     color: green;
 }
 
-#mainLand a:hover, #mainLog a:hover, #mainReg a:hover, #mainStatus a:hover, #mainContact a:hover {
+#mainLand a:hover, #mainLog a:hover, #mainReg a:hover, #mainStatus a:hover, #mainContact a:hover, #mainAdminContact a:hover {
     text-decoration: underline;
 }
 
@@ -279,7 +279,7 @@ textarea {
     font-size: 24px;
 }
 
-#mainUserControl {
+#mainUserControl, #mainAdminContact {
     width: 100%;
     background-color: #222222;
     display: flex;
@@ -287,7 +287,7 @@ textarea {
     align-items: center;
 }
 
-#mainUserControl h1 {
+#mainUserControl h1, #mainAdminContact h1 {
     margin-top: 75px;
 }
 
