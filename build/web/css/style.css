@@ -30,6 +30,7 @@ table {
     margin-bottom: 150px;
     border-collapse: collapse;
     width: 75%;
+    table-layout: fixed;
 }
 
 td, th {
@@ -37,6 +38,8 @@ td, th {
     text-align: center;
     padding: 10px;
     background-color: #181818;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 td {

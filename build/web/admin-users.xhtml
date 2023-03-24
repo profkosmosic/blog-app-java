@@ -62,17 +62,17 @@
                 </div>
                 <table style="animation: fade-in 1s;">
                     <tr>
-                        <th style="text-align: left">ID</th>
+                        <th style="text-align: left;">ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
                         <th>Admin Status</th>
-                        <th>Promote</th>
-                        <th>Delete</th>
+                        <th>Action</th>
+                        <th>Action</th>
                     </tr>
                     <c:forEach items="#{controller.korisnici}" var="user">
                         <tr>
-                            <td style="text-align: left">#{user.userId}</td>
+                            <td style="text-align: left;">#{user.userId}</td>
                             <td>#{user.firstName}</td>
                             <td>#{user.lastName}</td>
                             <td>#{user.email}</td>
