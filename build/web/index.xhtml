@@ -92,11 +92,11 @@
             <div id="contact" style="animation: fade-in 1s;">
                 <h:form id="contactForm">
                     <h:outputLabel id="eLabel" for="email">Email</h:outputLabel>
-                    <h:inputText id="email" value="#{controller.email}" size="28" validatorMessage="Email must be between 4 and 64 characters long!">
+                    <h:inputText id="email" value="#{controller.email}" validatorMessage="Email must be between 4 and 64 characters long!">
                         <f:validateLength minimum="4" maximum="64"></f:validateLength>
                     </h:inputText><br/><br/>
                     <h:outputLabel id="cLabel" for="content">Content</h:outputLabel>
-                    <h:inputTextarea id="content" value="#{controller.contactMessage}" cols="28" rows="5" validatorMessage="Content must be between 8 and 512 characters long!">
+                    <h:inputTextarea id="content" value="#{controller.contactMessage}" rows="5" validatorMessage="Content must be between 8 and 512 characters long!">
                         <f:validateLength minimum="8" maximum="512"></f:validateLength>
                     </h:inputTextarea><br/><br/>
                     <h:commandButton action="#{controller.contact()}" value="Send"></h:commandButton><br/>

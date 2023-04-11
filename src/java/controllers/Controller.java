@@ -166,6 +166,8 @@ public class Controller implements Serializable {
                         isAdmin = true;
                     }
                     ps.close();
+                    email = "";
+                    password = "";
                     FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
                 }
             }
@@ -206,6 +208,10 @@ public class Controller implements Serializable {
                     regPs.executeUpdate();
                     regPs.close();
                     ps.close();
+                    email = "";
+                    password = "";
+                    firstName = "";
+                    lastName = "";
                     return "success";
                 }
             }
@@ -385,6 +391,9 @@ public class Controller implements Serializable {
                 ps.setInt(5, user.getUserId());
                 ps.executeUpdate();
                 ps.close();
+                postTitle = "";
+                postContent = "";
+                postType = "";
                 return "success";
             }
             return "failure";

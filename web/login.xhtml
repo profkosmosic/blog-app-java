@@ -64,11 +64,11 @@
                 <div id="login" style="animation: fade-in 1s;">
                     <h:form id="loginForm">
                         <h:outputLabel id="eLabel" for="email">Email</h:outputLabel>
-                        <h:inputText id="email" value="#{controller.email}" size="24" validatorMessage="Email must be between 4 and 64 characters long!">
+                        <h:inputText id="email" value="#{controller.email}" validatorMessage="Email must be between 4 and 64 characters long!">
                             <f:validateLength minimum="4" maximum="64"></f:validateLength>
                         </h:inputText><br/><br/>
                         <h:outputLabel id="pLabel" for="password">Password</h:outputLabel>
-                        <h:inputSecret id="password" value="#{controller.password}" size="24" validatorMessage="Password must be between 8 and 64 characters long!">
+                        <h:inputSecret id="password" value="#{controller.password}" validatorMessage="Password must be between 8 and 64 characters long!">
                             <f:validateLength minimum="8" maximum="64"></f:validateLength>
                         </h:inputSecret><br/><br/>
                         <h:commandButton action="#{controller.logIn()}" value="Login"></h:commandButton><br/>

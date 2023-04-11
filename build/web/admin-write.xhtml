@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Write Post</title>
         <meta charset="utf-8"/>
@@ -53,7 +54,35 @@
                 </c:if>
             </ul>
         </div>
-        
+        <!--Main part of the page if the user is an admin-->
+        <c:if test="#{controller.isAdmin}">
+            <div id="mainWrite">
+                <div>
+                    <h1>Write Post</h1>
+                    <h2>Here you can <i class="highlight">write</i> a new post!</h2>
+                </div>
+                <div id="writeSection" style="animation: fade-in 1s;">
+                    <h:form id="postForm">
+                        <h:outputLabel id="typeLabel" for="postType">Post Type</h:outputLabel>
+                        <h:selectOneMenu id="postType" value="#{controller.postType}">
+                            <f:selectItem itemValue="Opinion"></f:selectItem>
+                            <f:selectItem itemValue="News"></f:selectItem>
+                            <f:selectItem itemValue="Tutorial"></f:selectItem>
+                        </h:selectOneMenu><br/><br/>
+                        <h:outputLabel id="titleLabel" for="postTitle">Post Title</h:outputLabel>
+                        <h:inputText id="postTitle" value="#{controller.postTitle}" validatorMessage="Title must be between 16 and 64 characters long!">
+                            <f:validateLength minimum="16" maximum="64"></f:validateLength>
+                        </h:inputText><br/><br/>
+                        <h:outputLabel id="contentLabel" for="postContent">Post Content</h:outputLabel>
+                        <h:inputTextarea id="postContent" rows="12" value="#{controller.postContent}" validatorMessage="Content must be between 128 and 1024 characters long!">
+                            <f:validateLength minimum="128" maximum="1024"></f:validateLength>
+                        </h:inputTextarea><br/><br/>
+                        <h:commandButton action="#{controller.addPost()}" value="Add Post"></h:commandButton><br/><br/>
+                        <h:messages style="color: red; font-size: 18px;"></h:messages>
+                    </h:form>
+                </div>
+            </div>   
+        </c:if>
         <!--Main part of the page if the user is not an admin-->
         <c:if test="#{!controller.isAdmin}">
             <div id="mainAdmin">
