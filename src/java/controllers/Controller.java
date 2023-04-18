@@ -456,20 +456,4 @@ public class Controller implements Serializable {
             return "failure";
         }
     }
-    
-    public void goToPosts() throws IOException {
-        FacesContext.getCurrentInstance().getExternalContext().redirect("posts.xhtml");
-    }
-    
-    public void goToUserControl() throws IOException {
-        FacesContext.getCurrentInstance().getExternalContext().redirect("admin-users.xhtml");
-    }
-    
-    public void goToPostWriting() throws IOException {
-        FacesContext.getCurrentInstance().getExternalContext().redirect("admin-write.xhtml");
-    }
-    
-    public void goToAdminContact() throws IOException {
-        FacesContext.getCurrentInstance().getExternalContext().redirect("admin-contact.xhtml");
-    }
 }
