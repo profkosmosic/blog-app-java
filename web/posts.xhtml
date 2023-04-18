@@ -60,7 +60,19 @@
         </div>
         <!--Main part of the page!-->
         <div id="mainPosts">
-            
+            <div>
+                <h1>Articles</h1>
+                <h2>We cover a wide range of <i class="highlight">topics</i>!</h2>
+            </div>
+            <div id="postContainer" style="animation: fade-in 1s;">
+                <c:forEach items="#{controller.posts}" var="post">
+                    <div class="blogPost">
+                        <h3>#{post.postTitle}</h3><br/><br/><br/>
+                        <p class="pDate">Date: <i class="highlight">#{post.postDate}</i></p>
+                        <p class="pAuthor">Author: <i class="highlight">#{post.authorId}</i></p>
+                    </div>
+                </c:forEach>
+            </div>
         </div>
         <!--Footer-->
         <div id="footer">
