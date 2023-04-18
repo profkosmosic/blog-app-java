@@ -458,12 +458,10 @@ public class Controller implements Serializable {
     }
     
     public void goToPosts() throws IOException {
-        fetchPosts();
         FacesContext.getCurrentInstance().getExternalContext().redirect("posts.xhtml");
     }
     
     public void goToUserControl() throws IOException {
-        fetchUsers();
         FacesContext.getCurrentInstance().getExternalContext().redirect("admin-users.xhtml");
     }
     
@@ -472,7 +470,6 @@ public class Controller implements Serializable {
     }
     
     public void goToAdminContact() throws IOException {
-        fetchMessages();
         FacesContext.getCurrentInstance().getExternalContext().redirect("admin-contact.xhtml");
     }
 }
