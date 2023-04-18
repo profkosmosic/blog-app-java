@@ -1,6 +1,7 @@
 package controllers;
 
 import beans.Message;
+import beans.Post;
 import data.DB;
 import beans.User;
 import java.io.IOException;
@@ -32,12 +33,14 @@ public class Controller implements Serializable {
     private String postType;
     // All user info will be stored in this object.
     private User user = new User();
+    private Post post = new Post();
     // Status checks.
     private Boolean loggedIn = false;
     private Boolean isAdmin = false;
     // Item lists.
     private List<User> users = new ArrayList<>();
     private List<Message> messages = new ArrayList<>();
+    private List<Post> posts = new ArrayList<>();
     // Getters and Setters
     public String getEmail() {
         return email;
@@ -248,7 +251,7 @@ public class Controller implements Serializable {
         }
     }
     
-    public void fetchUsers() {
+    public void fetchUsers() throws IOException {
         users.clear();
         Connection con = null;
         PreparedStatement ps = null;
@@ -319,7 +322,7 @@ public class Controller implements Serializable {
         }
     }
     
-    public void fetchMessages() {
+    public void fetchMessages() throws IOException {
         messages.clear();
         Connection con = null;
         PreparedStatement ps = null;
@@ -368,15 +371,65 @@ public class Controller implements Serializable {
         }
     }
     
-    public void fetchPosts() {
+    public void fetchPosts() throws IOException {
+        posts.clear();
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
         
+        try {
+            con = DB.getInstance().getConnection();
+            if(con != null) {
+                ps = con.prepareStatement("SELECT * FROM ROOT.POSTS");
+                rs = ps.executeQuery();
+                while(rs.next()) {
+                    Post p = new Post();
+                    p.setPostId(rs.getInt("post_id"));
+                    p.setPostTitle(rs.getString("post_title"));
+                    p.setPostContent(rs.getString("post_content"));
+                    p.setPostType(rs.getString("post_type"));
+                    p.setPostDate(rs.getTimestamp("post_date"));
+                    p.setAuthorId(rs.getInt("user_id"));
+                    posts.add(p);
+                }
+                ps.close();
+            }
+        }
+        
+        catch(SQLException ex) {
+            System.out.println(ex);
+        }
     }
     
-    public void getPost() {
+    public void getPost(int id) throws IOException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
         
+        try {
+            con = DB.getInstance().getConnection();
+            if(con != null) {
+                ps = con.prepareStatement("SELECT * FROM ROOT.POSTS WHERE post_id = ?");
+                ps.setInt(1, id);
+                rs = ps.executeQuery();
+                if(rs.next()) {
+                    post.setPostId(id);
+                    post.setPostTitle(rs.getString("post_title"));
+                    post.setPostContent(rs.getString("post_content"));
+                    post.setPostType(rs.getString("post_type"));
+                    post.setPostDate(rs.getTimestamp("post_date"));
+                    post.setAuthorId(rs.getInt("user_id"));
+                }
+                ps.close();
+            }
+        }
+        
+        catch(SQLException ex) {
+            System.out.println(ex);
+        }
     }
     
-    public String addPost() {
+    public String addPost() throws IOException {
         Connection con = null;
         PreparedStatement ps = null;
         
@@ -402,6 +455,11 @@ public class Controller implements Serializable {
         catch(SQLException ex) {
             return "failure";
         }
+    }
+    
+    public void goToPosts() throws IOException {
+        fetchPosts();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("posts.xhtml");
     }
     
     public void goToUserControl() throws IOException {
