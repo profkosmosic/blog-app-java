@@ -22,7 +22,7 @@
             <!--Desktop navigation-->
             <div id="nav">
                 <a href="#">Home</a>
-                <a href="posts.xhtml">Articles</a>
+                <h:form><h:commandLink action="#{controller.goToPosts()}" value="Articles"></h:commandLink></h:form>
                 <c:if test="#{controller.isAdmin}">
                     <a href="admin.xhtml">Admin</a>
                 </c:if>
@@ -42,7 +42,7 @@
         <div id="navMobileContent">
             <ul>
                 <a href="#" onClick="Close()"><li>Home</li></a>
-                <a href="posts.xhtml" onClick="Close()"><li>Articles</li></a>
+                <h:form><h:commandLink style="width: 100%" action="#{controller.goToPosts()}"><li>Articles</li></h:commandLink></h:form>
                 <c:if test="#{controller.isAdmin}">
                     <a href="admin.xhtml" onclick="Close()"><li>Admin</li></a>
                 </c:if>
@@ -81,7 +81,7 @@
                     <p>We also offer <i class="highlight">tutorials</i> to help you navigate complex coding concepts and best practices. Our goal is to make programming accessible to <i class="highlight">everyone</i>, so we strive to present information in a clear and concise manner.</p>
                 </div>
             </div>
-            <a href="posts.xhtml" style="animation: fade-in 1s;">Click here to get started!</a>
+            <h:form><h:commandLink style="animation: fade-in 1s;" action="#{controller.goToPosts()}" value="Click here to get started!"></h:commandLink></h:form>
         </div>
         <!--Contact section of the landing page-->
         <div id="mainContact">
