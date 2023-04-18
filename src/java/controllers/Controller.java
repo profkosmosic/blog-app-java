@@ -292,7 +292,6 @@ public class Controller implements Serializable {
                 ps.setInt(1, id);
                 ps.executeUpdate();
                 ps.close();
-                goToUserControl();
             }
         }
         
@@ -313,7 +312,6 @@ public class Controller implements Serializable {
                 ps.setInt(1, id);
                 ps.executeUpdate();
                 ps.close();
-                goToUserControl();
             }
         }
         
@@ -362,7 +360,6 @@ public class Controller implements Serializable {
                 ps.setInt(1, id);
                 ps.executeUpdate();
                 ps.close();
-                goToAdminContact();
             }
         }
         
