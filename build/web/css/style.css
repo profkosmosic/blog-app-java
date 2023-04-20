@@ -254,12 +254,12 @@ textarea {
     text-align: center;
 }
 
-#mainLand a, #mainLog a, #mainReg a, #mainStatus a, #mainContact a, #mainPosts a {
+#mainLand a, #mainLog a, #mainReg a, #mainStatus a, #mainContact a {
     font-size: 24px;
     color: green;
 }
 
-#mainLand a:hover, #mainLog a:hover, #mainReg a:hover, #mainStatus a:hover, #mainContact a:hover, #mainPosts a:hover {
+#mainLand a:hover, #mainLog a:hover, #mainReg a:hover, #mainStatus a:hover, #mainContact a:hover {
     text-decoration: underline;
 }
 
@@ -303,6 +303,9 @@ textarea {
     font-weight: normal;
     font-size: 24px;
     margin-top: 12px;
+    overflow-x: auto;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 .pDate {
@@ -315,6 +318,35 @@ textarea {
     position: absolute;
     top: 55px;
     left: 25px;
+}
+
+.pContent {
+    margin-top: 60px;
+    overflow-x: auto;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.pRead, .pDelete {
+    position: absolute;
+    color: green;
+    border: 3px green solid;
+    padding: 7px;
+    font-size: 18px;
+}
+
+.pRead:hover, .pDelete:hover {
+    text-decoration: underline;
+}
+
+.pRead {
+    left: 25px;
+    bottom: 25px;
+}
+
+.pDelete {
+    left: 150px;
+    bottom: 25px;
 }
 
 #mainLog {
@@ -632,6 +664,14 @@ form {
     
     .landingIcon {
         padding: 15px;
+    }
+    
+    #postContainer {
+        width: 90%;
+    }
+    
+    .blogPost h3 {
+        font-size: 20px;
     }
     
     #mainAdmin {

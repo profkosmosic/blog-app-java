@@ -62,14 +62,19 @@
         <div id="mainPosts">
             <div>
                 <h1>Articles</h1>
-                <h2>We cover a wide range of <i class="highlight">topics</i>!</h2>
+                <h2>We cover a wide <i class="highlight">[array]</i> of topics!</h2>
             </div>
             <div id="postContainer" style="animation: fade-in 1s;">
                 <c:forEach items="#{controller.posts}" var="post">
                     <div class="blogPost">
-                        <h3>#{post.postTitle}</h3><br/><br/><br/>
+                        <h3>#{post.postTitle}</h3>
                         <p class="pDate">Date: <i class="highlight">#{post.postDate}</i></p>
-                        <p class="pAuthor">Author: <i class="highlight">#{post.authorId}</i></p>
+                        <p class="pAuthor">Author: <i class="highlight">#{controller.getUserName(post.authorId)}</i></p><br/><br/>
+                        <p class="pContent">#{controller.shortenPostContent(post.postContent)}</p><br/><br/><br/>
+                        <h:form><h:commandLink class="pRead" action="#{controller.getPost(post.postId)}" value="READ MORE"></h:commandLink></h:form>
+                        <c:if test="#{controller.isAdmin}">
+                            <h:form><h:commandLink class="pDelete" action="#{controller.deletePost(post.postId)}" value="DELETE"></h:commandLink></h:form>
+                        </c:if>
                     </div>
                 </c:forEach>
             </div>

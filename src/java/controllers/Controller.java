@@ -299,7 +299,6 @@ public class Controller implements Serializable {
     public void deleteUser(int id) throws IOException {
         Connection con = null;
         PreparedStatement ps = null;
-        ResultSet rs = null;
         
         try {
             con = DB.getInstance().getConnection();
@@ -309,6 +308,7 @@ public class Controller implements Serializable {
                 ps.executeUpdate();
                 ps.close();
             }
+            reloadUsers();
         }
         
         catch(SQLException ex) {
@@ -319,7 +319,6 @@ public class Controller implements Serializable {
     public void promoteUser(int id) throws IOException {
         Connection con = null;
         PreparedStatement ps = null;
-        ResultSet rs = null;
         
         try {
             con = DB.getInstance().getConnection();
@@ -329,10 +328,35 @@ public class Controller implements Serializable {
                 ps.executeUpdate();
                 ps.close();
             }
+            reloadUsers();
         }
         
         catch(SQLException ex) {
             System.out.println(ex);
+        }
+    }
+    
+    public String getUserName(int id) throws IOException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            con = DB.getInstance().getConnection();
+            if(con != null) {
+                ps = con.prepareStatement("SELECT * FROM ROOT.USERS WHERE user_id = ?");
+                ps.setInt(1, id);
+                rs = ps.executeQuery();
+                if(rs.next()) {
+                    return rs.getString("first_name") + " " + rs.getString("last_name");
+                }
+                ps.close();
+            }
+            return "Error";
+        }
+        
+        catch(SQLException ex) {
+            return "Error";
         }
     }
     
@@ -345,7 +369,7 @@ public class Controller implements Serializable {
         try {
             con = DB.getInstance().getConnection();
             if(con != null) {
-                ps = con.prepareStatement("SELECT * FROM ROOT.CONTACT");
+                ps = con.prepareStatement("SELECT * FROM ROOT.CONTACT ORDER BY contact_date DESC");
                 rs = ps.executeQuery();
                 while(rs.next()) {
                     Message m = new Message();
@@ -367,7 +391,6 @@ public class Controller implements Serializable {
     public void deleteMessage(int id) throws IOException {
         Connection con = null;
         PreparedStatement ps = null;
-        ResultSet rs = null;
         
         try {
             con = DB.getInstance().getConnection();
@@ -377,6 +400,7 @@ public class Controller implements Serializable {
                 ps.executeUpdate();
                 ps.close();
             }
+            reloadMessages();
         }
         
         catch(SQLException ex) {
@@ -393,7 +417,7 @@ public class Controller implements Serializable {
         try {
             con = DB.getInstance().getConnection();
             if(con != null) {
-                ps = con.prepareStatement("SELECT * FROM ROOT.POSTS");
+                ps = con.prepareStatement("SELECT * FROM ROOT.POSTS ORDER BY post_date DESC");
                 rs = ps.executeQuery();
                 while(rs.next()) {
                     Post p = new Post();
@@ -442,6 +466,10 @@ public class Controller implements Serializable {
         }
     }
     
+    public String shortenPostContent(String content) {
+        return content.substring(0, 99) + "...";
+    }
+    
     public String addPost() throws IOException {
         Connection con = null;
         PreparedStatement ps = null;
@@ -468,5 +496,40 @@ public class Controller implements Serializable {
         catch(SQLException ex) {
             return "failure";
         }
+    }
+    
+    public void deletePost(int id) throws IOException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        
+        try {
+            con = DB.getInstance().getConnection();
+            if(con != null) {
+                ps = con.prepareStatement("DELETE FROM ROOT.POSTS WHERE post_id = ?");
+                ps.setInt(1, id);
+                ps.executeUpdate();
+                ps.close();
+            }
+            reloadPosts();
+        }
+        
+        catch(SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void reloadPosts() throws IOException {
+        fetchPosts();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("posts.xhtml");
+    }
+    
+    public void reloadUsers() throws IOException {
+        fetchUsers();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("admin-users.xhtml");
+    }
+    
+    public void reloadMessages() throws IOException {
+        fetchMessages();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("admin-contact.xhtml");
     }
 }
