@@ -68,12 +68,13 @@
                 <c:forEach items="#{controller.posts}" var="post">
                     <div class="blogPost">
                         <h3>#{post.postTitle}</h3>
-                        <p class="pDate">Date: <i class="highlight">#{post.postDate}</i></p>
+                        <p class="pDate">Date: <i class="highlight">#{controller.cleanUpDate(post.postDate)}</i></p>
                         <p class="pAuthor">Author: <i class="highlight">#{controller.getUserName(post.authorId)}</i></p><br/><br/>
                         <p class="pContent">#{controller.shortenPostContent(post.postContent)}</p><br/><br/><br/>
                         <h:form><h:commandLink class="pRead" action="#{controller.getPost(post.postId)}" value="READ MORE"></h:commandLink></h:form>
                         <c:if test="#{controller.isAdmin}">
                             <h:form><h:commandLink class="pDelete" action="#{controller.deletePost(post.postId)}" value="DELETE"></h:commandLink></h:form>
+                            <h:form><h:commandLink class="pEdit" action="#{controller.getEditPost(post.postId)}" value="EDIT"></h:commandLink></h:form>
                         </c:if>
                     </div>
                 </c:forEach>

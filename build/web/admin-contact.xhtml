@@ -69,7 +69,7 @@
                     <c:forEach items="#{controller.messages}" var="msg">
                         <div class="contactMessage">
                             <p class="cEmail">#{msg.contactEmail}</p>
-                            <p class="cDate">#{msg.contactDate}</p><br/><br/>
+                            <p class="cDate">#{controller.cleanUpDate(msg.contactDate)}</p><br/><br/>
                             <pre>#{msg.contactContent}</pre><br/><br/>
                             <h:form><h:commandLink class="cDelete" action="#{controller.deleteMessage(msg.contactId)}" value="DELETE"></h:commandLink></h:form>
                         </div>

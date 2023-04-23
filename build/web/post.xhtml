@@ -53,7 +53,17 @@
                 </c:if>
             </ul>
         </div>
-        
+        <!--Main part of the page!-->
+        <div id="mainPost">
+            <div id="postInfo">
+                <h1>#{controller.post.postTitle}</h1>
+                <h2>By #{controller.getUserName(controller.post.authorId)}</h2>
+                <h2><i class="highlight">#{controller.cleanUpDate(controller.post.postDate)}</i></h2>
+            </div>
+            <div id="postText" style="animation: fade-in 1s;">
+                <pre>#{controller.post.postContent}</pre>
+            </div>
+        </div>
         <!--Footer-->
         <div id="footer">
             <p>Developed by <a href="https://github.com/profkosmosic" target="_blank">Lazar Petrovic</a></p>

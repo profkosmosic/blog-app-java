@@ -31,6 +31,9 @@ public class Controller implements Serializable {
     private String postTitle;
     private String postContent;
     private String postType;
+    private Integer editId;
+    private String editTitle;
+    private String editContent;
     // All user info will be stored in this object.
     private User user = new User();
     private Post post = new Post();
@@ -160,6 +163,30 @@ public class Controller implements Serializable {
 
     public void setPostType(String postType) {
         this.postType = postType;
+    }
+
+    public String getEditTitle() {
+        return editTitle;
+    }
+
+    public void setEditTitle(String editTitle) {
+        this.editTitle = editTitle;
+    }
+
+    public String getEditContent() {
+        return editContent;
+    }
+
+    public void setEditContent(String editContent) {
+        this.editContent = editContent;
+    }
+
+    public Integer getEditId() {
+        return editId;
+    }
+
+    public void setEditId(Integer editId) {
+        this.editId = editId;
     }
     // Methods
     public void logIn() throws IOException {
@@ -458,6 +485,7 @@ public class Controller implements Serializable {
                     post.setAuthorId(rs.getInt("user_id"));
                 }
                 ps.close();
+                FacesContext.getCurrentInstance().getExternalContext().redirect("post.xhtml");
             }
         }
         
@@ -468,6 +496,10 @@ public class Controller implements Serializable {
     
     public String shortenPostContent(String content) {
         return content.substring(0, 99) + "...";
+    }
+    
+    public String cleanUpDate(Timestamp date) {
+        return date.toString().substring(0, 10);
     }
     
     public String addPost() throws IOException {
@@ -515,6 +547,61 @@ public class Controller implements Serializable {
         
         catch(SQLException ex) {
             System.out.println(ex);
+        }
+    }
+    
+    public void getEditPost(int id) throws IOException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            con = DB.getInstance().getConnection();
+            if(con != null) {
+                ps = con.prepareStatement("SELECT * FROM ROOT.POSTS WHERE post_id = ?");
+                ps.setInt(1, id);
+                rs = ps.executeQuery();
+                if(rs.next()) {
+                    post.setPostId(id);
+                    post.setPostTitle(rs.getString("post_title"));
+                    post.setPostContent(rs.getString("post_content"));
+                    post.setPostType(rs.getString("post_type"));
+                    post.setPostDate(rs.getTimestamp("post_date"));
+                    post.setAuthorId(rs.getInt("user_id"));
+                    editId = post.getPostId();
+                    editTitle = post.getPostTitle();
+                    editContent = post.getPostContent();
+                }
+                ps.close();
+                FacesContext.getCurrentInstance().getExternalContext().redirect("admin-edit.xhtml");
+            }
+        }
+        
+        catch(SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public String editPost() throws IOException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        
+        try {
+            con = DB.getInstance().getConnection();
+            if(con != null) {
+                ps = con.prepareStatement("UPDATE ROOT.POSTS SET post_title = ?, post_content = ? WHERE post_id = ?");
+                ps.setString(1, editTitle);
+                ps.setString(2, editContent);
+                ps.setInt(3, editId);
+                ps.executeUpdate();
+                ps.close();
+                return "success";
+            }
+            return "failure";
+        }
+        
+        catch(SQLException ex) {
+            return "failure";
         }
     }
     

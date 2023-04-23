@@ -17,7 +17,7 @@ body {
     margin: 0 auto;
 }
 
-h1, h3, ul {
+h1, h2, h3, ul {
     margin: 0;
 }
 
@@ -241,14 +241,14 @@ textarea {
     justify-content: space-evenly;
 }
 
-#mainLand h1, #mainLog h1, #mainReg h1, #mainStatus h1, #mainContact h1, #mainAdmin h1, #mainUserControl h1, #mainAdminContact h1, #mainWrite h1, #mainPosts h1 {
+#mainLand h1, #mainLog h1, #mainReg h1, #mainStatus h1, #mainContact h1, #mainAdmin h1, #mainUserControl h1, #mainAdminContact h1, #mainWrite h1, #mainPosts h1, #mainPost h1 {
     color: white;
     font-weight: normal;
     text-align: center;
     font-size: 42px;
 }
 
-#mainLand h2, #mainLog h2, #mainReg h2, #mainStatus h2, #mainContact h2, #mainAdmin h2, #mainUserControl h2, #mainAdminContact h2, #mainWrite h2, #mainPosts h2 {
+#mainLand h2, #mainLog h2, #mainReg h2, #mainStatus h2, #mainContact h2, #mainAdmin h2, #mainUserControl h2, #mainAdminContact h2, #mainWrite h2, #mainPosts h2, #mainPost h2 {
     color: white;
     font-weight: normal;
     text-align: center;
@@ -273,9 +273,46 @@ textarea {
     background-image: url(../images/prism.png);
 }
 
+#mainPost {
+    width: 100%;
+    background-color: #222222;
+    min-height: 85vh;
+}
+
+#postInfo {
+    padding-top: 50px;
+}
+
+#postInfo h1 {
+    color: green;
+}
+
+#postInfo h2 {
+    margin-top: 8px;
+}
+
+#postText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#postText pre {
+    margin: 0;
+    width: 60%;
+    padding-top: 50px;
+    font-size: 20px;
+    color: white;
+    overflow-x: auto;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    margin-bottom: 75px;
+}
+
 #mainPosts {
     width: 100%;
     background-color: #222222;
+    min-height: 85vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -327,7 +364,7 @@ textarea {
     white-space: pre-wrap;
 }
 
-.pRead, .pDelete {
+.pRead, .pDelete, .pEdit {
     position: absolute;
     color: green;
     border: 3px green solid;
@@ -335,7 +372,7 @@ textarea {
     font-size: 18px;
 }
 
-.pRead:hover, .pDelete:hover {
+.pRead:hover, .pDelete:hover, .pEdit:hover {
     text-decoration: underline;
 }
 
@@ -346,6 +383,11 @@ textarea {
 
 .pDelete {
     left: 150px;
+    bottom: 25px;
+}
+
+.pEdit {
+    left: 242px;
     bottom: 25px;
 }
 
@@ -369,6 +411,10 @@ textarea {
 
 #mainAdmin a {
     font-size: 24px;
+}
+
+#mainUserControl, #mainAdminContact {
+    min-height: 85vh;
 }
 
 #mainUserControl, #mainAdminContact, #mainWrite {
@@ -664,6 +710,10 @@ form {
     
     .landingIcon {
         padding: 15px;
+    }
+    
+    #postText pre {
+        width: 80%;
     }
     
     #postContainer {
