@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Article</title>
         <meta charset="utf-8"/>
@@ -13,6 +14,10 @@
         <link rel="icon" type="image/x-icon" href="favicon.ico"/>
     </h:head>
     <h:body>
+        <!-- Loads the posts. -->
+        <f:metadata>
+            <f:viewAction action="#{controller.fetchComments(controller.post.postId)}"/>
+        </f:metadata>
         <!--Header-->
         <div id="header">
             <div id="logo">
@@ -62,6 +67,14 @@
             </div>
             <div id="postText" style="animation: fade-in 1s;">
                 <pre>#{controller.post.postContent}</pre>
+            </div>
+            <div id="commentSection">
+                <h3>COMMENTS</h3>
+                <c:forEach items="#{controller.comments}" var="comment">
+                    <div class="comment">
+                        <pre>#{comment.commentContent}</pre>
+                    </div>
+                </c:forEach>
             </div>
         </div>
         <!--Footer-->
