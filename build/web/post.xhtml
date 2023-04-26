@@ -68,13 +68,29 @@
             <div id="postText" style="animation: fade-in 1s;">
                 <pre>#{controller.post.postContent}</pre>
             </div>
-            <div id="commentSection">
-                <h3>COMMENTS</h3>
-                <c:forEach items="#{controller.comments}" var="comment">
-                    <div class="comment">
-                        <pre>#{comment.commentContent}</pre>
-                    </div>
-                </c:forEach>
+            <div id="commentSection" style="animation: fade-in 1s;">
+                <div id="commentContainer">
+                    <c:if test="#{controller.loggedIn}">
+                        <h3>Write a comment</h3>
+                        <h:form id="commentForm">
+                            <h:inputTextarea id="cContent" rows="3" value="#{controller.commentContent}" validatorMessage="Comment must be between 4 and 128 characters long!">
+                                <f:validateLength minimum="4" maximum="128"></f:validateLength>
+                            </h:inputTextarea><br/>
+                            <h:commandButton action="#{controller.addComment()}" value="Post"></h:commandButton><br/><br/>
+                            <h:messages style="color: red; font-size: 18px;"></h:messages><br/>
+                        </h:form>
+                    </c:if>
+                    <c:if test="#{!controller.loggedIn}">
+                        <h3>Please log in to comment!</h3><br/><br/>
+                    </c:if>
+                    <h3>COMMENTS</h3>
+                    <c:forEach items="#{controller.comments}" var="comment">
+                        <div class="comment">
+                            <p>#{controller.getUserName(comment.userId)} #{controller.cleanUpDate(comment.commentDate)}</p>
+                            <pre>#{comment.commentContent}</pre>
+                        </div><br/>
+                    </c:forEach>
+                </div>
             </div>
         </div>
         <!--Footer-->

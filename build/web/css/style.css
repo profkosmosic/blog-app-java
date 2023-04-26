@@ -306,7 +306,7 @@ textarea {
     overflow-x: auto;
     word-wrap: break-word;
     white-space: pre-wrap;
-    margin-bottom: 75px;
+    margin-bottom: 35px;
 }
 
 #mainPosts {
@@ -389,6 +389,42 @@ textarea {
 .pEdit {
     left: 242px;
     bottom: 25px;
+}
+
+#commentSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#commentContainer {
+    width: 60%;
+}
+
+#commentContainer h3 {
+    font-weight: normal;
+    color: green;
+    font-size: 22px;
+}
+
+#commentContainer form {
+    display: block;
+}
+
+#commentContainer input {
+    font-size: 20px;
+}
+
+#commentContainer textarea {
+    width: 60%;
+}
+
+.comment p {
+    color: green;
+}
+
+.comment pre {
+    color: white;
 }
 
 #mainLog {
@@ -714,6 +750,14 @@ form {
     
     #postText pre {
         width: 80%;
+    }
+    
+    #commentContainer {
+        width: 80%;
+    }
+    
+    #commentContainer textarea {
+        width: 70%;
     }
     
     #postContainer {
