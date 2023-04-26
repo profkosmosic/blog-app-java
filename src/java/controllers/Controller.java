@@ -1,5 +1,6 @@
 package controllers;
 
+import beans.Comment;
 import beans.Message;
 import beans.Post;
 import data.DB;
@@ -21,19 +22,21 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 @Named(value = "controller")
 public class Controller implements Serializable {
-    // All info we can get from the login, register and contact forms.
+    // All info we need for the login, register and contact forms.
     private String email;
     private String password;
     private String firstName;
     private String lastName;
     private String contactMessage;
-    // All info we can get from the post writing form.
+    // All info we need for post writing and editing forms.
     private String postTitle;
     private String postContent;
     private String postType;
     private Integer editId;
     private String editTitle;
     private String editContent;
+    // All info we need for the comment writing form.
+    private String commentContent;
     // All user info will be stored in this object.
     private User user = new User();
     private Post post = new Post();
@@ -44,6 +47,7 @@ public class Controller implements Serializable {
     private List<User> users = new ArrayList<>();
     private List<Message> messages = new ArrayList<>();
     private List<Post> posts = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
     // Getters and Setters
     public String getEmail() {
         return email;
@@ -188,6 +192,23 @@ public class Controller implements Serializable {
     public void setEditId(Integer editId) {
         this.editId = editId;
     }
+
+    public String getCommentContent() {
+        return commentContent;
+    }
+
+    public void setCommentContent(String commentContent) {
+        this.commentContent = commentContent;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+    
     // Methods
     public void logIn() throws IOException {
         Connection con = null;
@@ -605,6 +626,60 @@ public class Controller implements Serializable {
         }
     }
     
+    public void fetchComments(int postId) throws IOException {
+        comments.clear();
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            con = DB.getInstance().getConnection();
+            if(con != null) {
+                ps = con.prepareStatement("SELECT * FROM ROOT.COMMENTS WHERE post_id = ? ORDER BY comment_date DESC");
+                ps.setInt(1, postId);
+                rs = ps.executeQuery();
+                while(rs.next()) {
+                    Comment c = new Comment();
+                    c.setCommentId(rs.getInt("comment_id"));
+                    c.setCommentContent(rs.getString("comment_content"));
+                    c.setCommentDate(rs.getTimestamp("comment_date"));
+                    c.setUserId(rs.getInt("user_id"));
+                    c.setPostId(rs.getInt("post_id"));
+                    comments.add(c);
+                }
+                ps.close();
+            }
+        }
+        
+        catch(SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void addComment() throws IOException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        
+        try {
+            con = DB.getInstance().getConnection();
+            if(con != null) {
+                ps = con.prepareStatement("INSERT INTO ROOT.COMMENTS(comment_content, comment_date, user_id, post_id) VALUES(?, ?, ?, ?)");
+                ps.setString(1, commentContent);
+                ps.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
+                ps.setInt(3, user.getUserId());
+                ps.setInt(4, post.getPostId());
+                ps.executeUpdate();
+                ps.close();
+                commentContent = "";
+            }
+            reloadComments();
+        }
+        
+        catch(SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
     public void reloadPosts() throws IOException {
         fetchPosts();
         FacesContext.getCurrentInstance().getExternalContext().redirect("posts.xhtml");
@@ -618,5 +693,10 @@ public class Controller implements Serializable {
     public void reloadMessages() throws IOException {
         fetchMessages();
         FacesContext.getCurrentInstance().getExternalContext().redirect("admin-contact.xhtml");
+    }
+    
+    public void reloadComments() throws IOException {
+        fetchComments(post.getPostId());
+        FacesContext.getCurrentInstance().getExternalContext().redirect("post.xhtml");
     }
 }
