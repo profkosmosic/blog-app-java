@@ -321,7 +321,41 @@ textarea {
 #postContainer {
     width: 65%;
     margin-top: 75px;
-    margin-bottom: 75px;
+    margin-bottom: 25px;
+}
+
+.paginationContainer {
+  width: calc(100% - 2rem);
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  justify-content: center;
+}
+
+.pageNumber, .paginationButton{
+  font-size: 1.1rem;
+  background-color: transparent;
+  border: none;
+  margin: 0.25rem 0.25rem;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: .2rem;
+  font-family: siteFont;
+  color: white;
+}
+
+.pageNumber:hover, .paginationButton:not(.disabled):hover {
+  background: green;
+}
+
+.pageNumber.active {
+  color: white;
+  background: green;
+}
+
+.hidden {
+  display: none;
 }
 
 .blogPost {
@@ -336,7 +370,7 @@ textarea {
 .blogPost h3 {
     position: absolute;
     top: 0;
-    left: 25px;
+    left: 20px;
     font-weight: normal;
     font-size: 24px;
     margin-top: 12px;
@@ -348,13 +382,13 @@ textarea {
 .pDate {
     position: absolute;
     top: 30px;
-    left: 25px;
+    left: 20px;
 }
 
 .pAuthor {
     position: absolute;
     top: 55px;
-    left: 25px;
+    left: 20px;
 }
 
 .pContent {
@@ -377,17 +411,17 @@ textarea {
 }
 
 .pRead {
-    left: 25px;
+    left: 20px;
     bottom: 25px;
 }
 
 .pDelete {
-    left: 150px;
+    left: 145px;
     bottom: 25px;
 }
 
 .pEdit {
-    left: 242px;
+    left: 237px;
     bottom: 25px;
 }
 
@@ -416,7 +450,7 @@ textarea {
 }
 
 #commentContainer textarea {
-    width: 60%;
+    width: 65%;
 }
 
 .comment {
@@ -435,6 +469,9 @@ textarea {
 
 .comment pre {
     color: white;
+    overflow-x: auto;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 #mainLog {
@@ -511,7 +548,7 @@ textarea {
 #contactMsgContainer {
     width: 65%;
     margin-top: 75px;
-    margin-bottom: 75px;
+    margin-bottom: 25px;
 }
 
 .contactMessage {
@@ -767,7 +804,7 @@ form {
     }
     
     #commentContainer textarea {
-        width: 70%;
+        width: 75%;
     }
     
     #postContainer {
@@ -835,6 +872,10 @@ form {
     .cDate {
         left: 25px;
         top: 25px;
+    }
+    
+    #footer {
+        height: 85px;
     }
     
     #footer p {
