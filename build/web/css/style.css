@@ -419,6 +419,16 @@ textarea {
     width: 60%;
 }
 
+.comment {
+    background-color: #181818;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.comment p, .comment pre {
+    margin-left: 12px;
+}
+
 .comment p {
     color: green;
 }
